@@ -33,20 +33,20 @@ app.post("/api/chat", async (req, res) => {
   };
 
   try {
-    // const response = await axios.post(
-    //   "https://api.openai.com/v1/chat/completions",
-    //   payload,
-    //   options
-    // );
-    // console.log(
-    //   "🧠 Full OpenAI Response:",
-    //   JSON.stringify(response.data, null, 2)
-    // );
-    // const reply = response.data.choices[0].message.content;
-    const reply = "This is a mock interview answer from AI.";
+    const response = await axios.post(
+      "https://api.openai.com/v1/chat/completions",
+      payload,
+      options
+    );
+    console.log(
+      "🧠 Full OpenAI Response:",
+      JSON.stringify(response.data, null, 2)
+    );
+    const reply = response.data.choices[0].message.content;
+    // const reply = "This is a mock interview answer from AI.";
     res.json({ reply });
   } catch (error) {
-    console.error("🛑 OpenAI API error:");
+    console.error("OpenAI API error:");
     if (error.response) {
       console.error("Status:", error.response.status);
       console.error("Data:", error.response.data);
